@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroData Inc. - 脳とAIをつなぐ革新的ソリューション</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="NeuroData Inc.は感情認識と脳波分析に特化したAIソリューションを提供するリーディングカンパニーです。">
+    <meta name="robots" content="index, follow">
+    <!-- アクセシビリティ対応 -->
+    <meta name="theme-color" content="#0066cc">
+    <!-- QRコード生成ライブラリを追加 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">NeuroData Inc.</div>
+        <nav>
+            <ul>
+                <li><a href="#company" aria-label="会社情報セクションへ">会社情報</a></li>
+                <li><a href="#business" aria-label="プロダクトセクションへ">プロダクト</a></li>
+                <li><a href="#voices" aria-label="採用情報セクションへ">採用情報</a></li>
+                <li><a href="#news" aria-label="ニュースセクションへ">ニュース</a></li>
+                <li><a href="#contact" aria-label="お問い合わせセクションへ">お問い合わせ</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <label for="search-input" class="sr-only">サイト内検索</label>
+            <input type="text" id="search-input" placeholder="サイト内検索" aria-label="キーワードを入力">
+            <button id="search-button" aria-label="検索">🔍</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>NeuroData Inc.</h1>
+                <p class="slogan">── 脳とAIをつなぐ革新的ソリューション ──</p>
+                <p class="tagline">"あなたの感情を、AIが理解する未来へ"</p>
+            </div>
+        </section>
+
+        <section id="company" class="company">
+            <h2>会社紹介</h2>
+            <p>NeuroData Inc.は、感情認識と脳波分析に特化したAIソリューションを提供するリーディングカンパニーです。私たちは「感情理解AI IRIS」を中核に、人とAIの共生を目指しています。</p>
+        </section>
+
+        <section id="business" class="business">
+            <h2>主な事業</h2>
+            <ul>
+                <li>感情認識AI「IRIS」の研究開発</li>
+                <li>脳波デバイスと連携したメンタルヘルスソリューション</li>
+                <li>人材マッチング・感情適性評価ツール</li>
+                <li>大学・医療機関との共同研究</li>
+            </ul>
+        </section>
+
+        <section id="news" class="news">
+            <h2>お知らせ・ニュース</h2>
+            <ul>
+                <li><strong>【2025.03.01】</strong> 感情AI「IRIS」研究プロジェクト、第2フェーズへ</li>
+                <li><strong>【2025.02.15】</strong> サービス「NeuroSync」終了のお知らせ</li>
+                <li><strong>【2025.01.12】</strong> インド支社設立のお知らせ</li>
+            </ul>
+        </section>
+
+        <section id="voices" class="voices">
+            <h2>社員の声</h2>
+            <div class="voice-grid">
+                <div class="voice-card">
+                    <blockquote>「IRISのログに、誰も発言していない言葉が記録されていた…気のせいかな？」</blockquote>
+                </div>
+                <div class="voice-card">
+                    <blockquote>「プロジェクトB3、また記録が飛んでる。今週もか。」</blockquote>
+                </div>
+                <div class="voice-card">
+                    <blockquote>「音、聞こえたことない？2:14くらいに。」</blockquote>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>お問い合わせ</h2>
+            <p class="contact-status">ただいま受け付けていません</p>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">お名前</label>
+                    <input type="text" id="name" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="email">メールアドレス</label>
+                    <input type="email" id="email" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="message">お問い合わせ内容</label>
+                    <textarea id="message" rows="5" disabled></textarea>
+                </div>
+                <button type="submit" disabled>送信</button>
+            </form>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <p>&copy; 2025 NeuroData Inc. All Rights Reserved.</p>
+    </footer>
+
+    <!-- 検索モーダル -->
+    <div id="search-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div id="search-results"></div>
+        </div>
+    </div>
+
+    <!-- 必要なスクリプトを読み込む順番を変更 -->
+    <script src="script-part2.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

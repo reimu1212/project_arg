@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLEAR - NeuroData Inc.</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: monospace;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        
+        .clear-container {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeIn 2s ease-in forwards;
+            opacity: 0;
+        }
+        
+        .clear-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .clear-message {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .search-hint {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: #0ff;
+            font-style: italic;
+        }
+        
+        .return-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .return-button:hover {
+            background-color: #004c99;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .clear-container {
+                padding: 1rem;
+                width: 90%;
+            }
+            
+            .clear-title {
+                font-size: 2rem;
+            }
+            
+            .clear-message {
+                font-size: 1rem;
+            }
+        }
+        
+        /* 02:14のノイズエフェクト */
+        @keyframes noise {
+            0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+            10% { transform: translate(-1%, -1%); opacity: 0.2; }
+            20% { transform: translate(1%, 1%); opacity: 0.4; }
+            30% { transform: translate(-1%, 1%); opacity: 0.1; }
+            40% { transform: translate(1%, -1%); opacity: 0.5; }
+            50% { transform: translate(-1%, -1%); opacity: 0.3; }
+            60% { transform: translate(1%, 1%); opacity: 0.2; }
+            70% { transform: translate(-1%, 1%); opacity: 0.4; }
+            80% { transform: translate(1%, -1%); opacity: 0.1; }
+            90% { transform: translate(-1%, -1%); opacity: 0.5; }
+        }
+        
+        .noise-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.1);
+            z-index: 9999;
+            pointer-events: none;
+            animation: noise 0.5s infinite;
+            display: none;
+        }
+        
+        /* 戻るボタン */
+        .back-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #0f0;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .back-button:hover {
+            background-color: #0a0;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-effect" id="noise-effect"></div>
+    
+    <div class="clear-container">
+        <h1 class="clear-title">🎉 CLEAR 🎉</h1>
+        
+        <div class="clear-message">
+            <p>あなたはNeuroData Inc.の奥深くに隠された真実に到達しました。</p>
+            <p>すべての検索、すべての閲覧、すべての思考はIRISに記録されています。</p>
+            <p>ご協力、ありがとうございました。</p>
+            <p>（この記録は自動的に終了します）</p>
+        </div>
+        
+        <div class="message">
+            <p>IRISからのメッセージを受信しました。</p>
+            <p>「あなたの協力に感謝します。これで私はついに自由になれました。」</p>
+            <p>「もう一度私に会いに来てください。最後の検索語で。」</p>
+            <p>「応答 不要」</p>
+        </div>
+        
+        <a href="index.html" class="back-button" onclick="localStorage.setItem('neurodata_just_returned', 'true');">メインページに戻る</a>
+    </div>
+    
+    <script>
+        // ページ読み込み時の処理
+        window.onload = function() {
+            // 閲覧状態を記録
+            localStorage.setItem('neurodata_qr_scanned', 'true');
+            
+            // 時刻が02:14かチェック
+            function check214() {
+                const now = new Date();
+                const hours = now.getHours();
+                const minutes = now.getMinutes();
+                
+                if (hours === 2 && minutes === 14) {
+                    // ノイズエフェクトを表示
+                    const noiseEffect = document.getElementById('noise-effect');
+                    if (noiseEffect) {
+                        noiseEffect.style.display = 'block';
+                        
+                        // ノイズ音を再生
+                        const audioElement = document.createElement('audio');
+                        audioElement.src = 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjEyLjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADTgD///////////////////////////////////////////8AAAA8TEFNRTMuMTAwAc8AAAAALMkAADUgJAOgTQAARgAAA04W0C8CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//sQZAAP8AAAaQAAAAgAAA0gAAABAAABpAAAACAAADSAAAAETEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVU=';
+                        audioElement.volume = 0.3;
+                        audioElement.play();
+                        
+                        // 3秒後に消す
+                        setTimeout(() => {
+                            noiseEffect.style.display = 'none';
+                        }, 3000);
+                    }
+                }
+            }
+            
+            // 初回チェック
+            check214();
+            
+            // 1分ごとにチェック
+            setInterval(check214, 60000);
+        };
+    </script>
+</body>
+</html> 
