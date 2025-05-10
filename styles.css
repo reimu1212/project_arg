@@ -317,8 +317,15 @@ h2 {
 }
 
 @keyframes fadeInOut {
-    0%, 100% { opacity: 0.8; }
-    50% { opacity: 1; }
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
 }
 
 /* フッタースタイル */
@@ -343,9 +350,17 @@ footer {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* レスポンシブデザイン */
@@ -354,38 +369,38 @@ footer {
         flex-direction: column;
         padding: 0.5rem;
     }
-    
+
     .logo {
         margin-bottom: 0.5rem;
     }
-    
+
     nav ul {
         flex-wrap: wrap;
         justify-content: center;
     }
-    
+
     nav ul li {
         margin: 0.5rem;
     }
-    
+
     .search-container {
         width: 100%;
         margin-top: 0.5rem;
         justify-content: center;
     }
-    
+
     #search-input {
         width: 70%;
     }
-    
+
     .hero h1 {
         font-size: 2rem;
     }
-    
+
     .slogan {
         font-size: 1.2rem;
     }
-    
+
     .modal-content {
         width: 95%;
         margin: 5% auto;
@@ -397,19 +412,19 @@ footer {
     main {
         margin-top: 150px;
     }
-    
+
     section {
         padding: 1rem;
     }
-    
+
     .hero {
         height: 40vh;
     }
-    
+
     .hero h1 {
         font-size: 1.8rem;
     }
-    
+
     .voice-grid {
         grid-template-columns: 1fr;
     }
@@ -465,4 +480,10 @@ footer {
     border-radius: 4px;
     color: #0ff;
     font-style: italic;
-} 
+}
+
+.disclaimer {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 10px;
+}
