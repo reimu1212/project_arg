@@ -1,24 +1,24 @@
 // データベース部分は別ファイルにあります
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('search-button');
     const searchModal = document.getElementById('search-modal');
     const searchResults = document.getElementById('search-results');
     const closeButton = document.querySelector('.close-button');
-    
+
     // ローカルストレージからクリア状態とQRスキャン状態を確認
     const isCompleted = localStorage.getItem('neurodata_arg_completed');
     const isQrScanned = localStorage.getItem('neurodata_qr_scanned');
     const justReturned = localStorage.getItem('neurodata_just_returned');
-    
+
     if (isCompleted === 'true') {
         addCompletedBadge();
     }
-    
+
     // QRコードスキャン後の状態をチェック
     if (isQrScanned === 'true' && window.location.hash === '#qr-complete') {
         searchModal.style.display = 'block';
-        
+
         // クリアページを表示
         if (typeof showClearPage === 'function') {
             showClearPage();
@@ -39,27 +39,27 @@ document.addEventListener('DOMContentLoaded', function() {
             searchResults.innerHTML = clearHTML;
         }
     }
-    
+
     // ヘッダーナビゲーションのスムーススクロール設定
     const navLinks = document.querySelectorAll('header nav a');
-    
+
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
                 // ヘッダーの高さを取得
                 const headerHeight = document.querySelector('header').offsetHeight;
-                
+
                 // 現在のスクロール位置を取得
                 const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
-                
+
                 // ヘッダーの高さを考慮したスクロール位置を計算
                 const offsetPosition = targetPosition - headerHeight - 20; // 20pxの余白を追加
-                
+
                 // スクロール実行
                 window.scrollTo({
                     top: offsetPosition,
@@ -68,16 +68,52 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
+    // --- 月報モーダルの開閉 ---
+    const monthlyLink = document.getElementById('monthly-link');
+    const monthlyModal = document.getElementById('monthly-modal');
+    const monthlyClose = document.getElementById('monthly-close');
+    if (monthlyLink && monthlyModal && monthlyClose) {
+        monthlyLink.addEventListener('click', function () {
+            monthlyModal.style.display = 'block';
+        });
+        monthlyClose.addEventListener('click', function () {
+            monthlyModal.style.display = 'none';
+        });
+        window.addEventListener('click', function (event) {
+            if (event.target === monthlyModal) {
+                monthlyModal.style.display = 'none';
+            }
+        });
+    }
+
+    // --- 新入社員紹介モーダルの開閉 ---
+    const newcomerLink = document.getElementById('newcomer-link');
+    const newcomerModal = document.getElementById('newcomer-modal');
+    const newcomerClose = document.getElementById('newcomer-close');
+    if (newcomerLink && newcomerModal && newcomerClose) {
+        newcomerLink.addEventListener('click', function () {
+            newcomerModal.style.display = 'block';
+        });
+        newcomerClose.addEventListener('click', function () {
+            newcomerModal.style.display = 'none';
+        });
+        window.addEventListener('click', function (event) {
+            if (event.target === newcomerModal) {
+                newcomerModal.style.display = 'none';
+            }
+        });
+    }
+
     // 戻ってきた直後の場合、welcomeメッセージを表示
     if (justReturned) {
         // 戻ってきたフラグをクリア
         localStorage.removeItem('neurodata_just_returned');
-        
+
         // ウェルカムバックメッセージ
         const modal = document.getElementById('modal');
         const modalContent = document.getElementById('modal-content');
-        
+
         if (modal && modalContent) {
             modalContent.innerHTML = `
                 <h2>おかえりなさい</h2>
@@ -85,23 +121,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p>最後の検索語を試してみてください：「応答 不要」</p>
                 <button id="close-modal">閉じる</button>
             `;
-            
+
             modal.style.display = 'flex';
-            
+
             // 閉じるボタン
-            document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('close-modal').addEventListener('click', function () {
                 modal.style.display = 'none';
             });
         }
     }
-    
+
     // 検索ボタンのイベント
     if (searchButton && searchInput) {
         // 検索ボタンクリック時
         searchButton.addEventListener('click', handleSearch);
-        
+
         // Enter キー押下時
-        searchInput.addEventListener('keypress', function(e) {
+        searchInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 handleSearch();
             }
@@ -109,11 +145,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // モーダルを閉じる
-    closeButton.addEventListener('click', function() {
+    closeButton.addEventListener('click', function () {
         searchModal.style.display = 'none';
     });
 
-    window.addEventListener('click', function(event) {
+    window.addEventListener('click', function (event) {
         if (event.target === searchModal) {
             searchModal.style.display = 'none';
         }
@@ -124,18 +160,18 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             // 既存の検索履歴を取得
             let searchLog = JSON.parse(localStorage.getItem('neurodata_search_log') || '[]');
-            
+
             // 新しい検索を追加
             searchLog.push({
                 query: query,
                 timestamp: new Date().toISOString()
             });
-            
+
             // 履歴を最大20件に制限
             if (searchLog.length > 20) {
                 searchLog = searchLog.slice(-20);
             }
-            
+
             // 履歴を保存
             localStorage.setItem('neurodata_search_log', JSON.stringify(searchLog));
         } catch (e) {
@@ -146,16 +182,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // 検索処理を実行する関数
     function handleSearch() {
         const searchTerm = searchInput.value.trim();
-        
+
         // 検索語が空の場合は警告
         if (searchTerm === '') {
             alert('検索語を入力してください');
             return;
         }
-        
+
         // 検索履歴に追加
         addToSearchHistory(searchTerm);
-        
+
         // 検索を実行
         performSearch(searchTerm);
     }
@@ -164,14 +200,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function performSearch(query) {
         // 検索履歴に記録
         logSearch(query);
-        
+
         // 検索結果を表示
         displaySearchResults(query);
-        
+
         // モーダルを表示
         searchModal.style.display = 'block';
     }
-    
+
     // 検索バリデーションメッセージ表示
     function showValidationMessage(message) {
         // 既存のメッセージがあれば削除
@@ -179,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (existingMessage) {
             existingMessage.remove();
         }
-        
+
         // メッセージ要素を作成
         const messageElement = document.createElement('div');
         messageElement.className = 'validation-message';
@@ -188,17 +224,17 @@ document.addEventListener('DOMContentLoaded', function() {
         messageElement.style.fontSize = '0.9rem';
         messageElement.style.marginTop = '5px';
         messageElement.style.position = 'absolute';
-        
+
         // 検索コンテナの下に追加
         const searchContainer = document.querySelector('.search-container');
         searchContainer.appendChild(messageElement);
-        
+
         // 3秒後に消える
         setTimeout(() => {
             messageElement.remove();
         }, 3000);
     }
-    
+
     // COMPLETEDバッジを追加
     function addCompletedBadge() {
         const searchContainer = document.querySelector('.search-container');
@@ -212,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 検索結果を表示
     function displaySearchResults(query) {
         searchResults.innerHTML = '';
-        
+
         // 特殊なキーワードでの検索結果
         if (query === '脳波同期') {
             displayLevel2Results();
@@ -301,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-    
+
     // Lv1 資料表示
     function displayLevel1Results() {
         const resultHTML = `
@@ -322,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         searchResults.innerHTML = resultHTML;
     }
-    
+
     // Lv2 資料表示
     function displayLevel2Results() {
         const resultHTML = `
@@ -354,7 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         searchResults.innerHTML = resultHTML;
     }
-    
+
     // Lv3 資料表示
     function displayLevel3Results() {
         const resultHTML = `
@@ -390,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         searchResults.innerHTML = resultHTML;
     }
-    
+
     // Lv4 資料表示
     function displayLevel4Results() {
         const resultHTML = `
@@ -424,7 +460,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         searchResults.innerHTML = resultHTML;
     }
-    
+
     // クリア条件のバックアップ
     function displayFinalResult() {
         const resultHTML = `
@@ -447,7 +483,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
         searchResults.innerHTML = resultHTML;
-        
+
         // クリア時のスタイル
         const clearStyle = document.createElement('style');
         clearStyle.textContent = `
@@ -471,13 +507,13 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(clearStyle);
     }
-    
+
     // Easter Egg: 02:14イースターエッグ
     function check214EasterEgg() {
         const now = new Date();
         const hours = now.getHours();
         const minutes = now.getMinutes();
-        
+
         if (hours === 2 && minutes === 14) {
             // ノイズエフェクトを追加
             const noiseEffect = document.createElement('div');
@@ -491,7 +527,7 @@ document.addEventListener('DOMContentLoaded', function() {
             noiseEffect.style.zIndex = '9999';
             noiseEffect.style.pointerEvents = 'none';
             noiseEffect.style.animation = 'noise 0.5s infinite';
-            
+
             const noiseStyle = document.createElement('style');
             noiseStyle.textContent = `
                 @keyframes noise {
@@ -507,16 +543,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     90% { transform: translate(-1%, -1%); opacity: 0.5; }
                 }
             `;
-            
+
             document.body.appendChild(noiseEffect);
             document.head.appendChild(noiseStyle);
-            
+
             // ノイズ音を再生
             const audioElement = document.createElement('audio');
             audioElement.src = 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjEyLjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADTgD///////////////////////////////////////////8AAAA8TEFNRTMuMTAwAc8AAAAALMkAADUgJAOgTQAARgAAA04W0C8CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//sQZAAP8AAAaQAAAAgAAA0gAAABAAABpAAAACAAADSAAAAETEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVU=';
             audioElement.volume = 0.3;
             audioElement.play();
-            
+
             // 数秒後に削除
             setTimeout(() => {
                 noiseEffect.remove();
@@ -524,7 +560,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 3000);
         }
     }
-    
+
     // 定期的に02:14チェック
     setInterval(check214EasterEgg, 60000); // 1分ごとにチェック
     check214EasterEgg(); // 初回チェック
@@ -533,11 +569,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function addToSearchHistory(term) {
         // ローカルストレージから既存の履歴を取得
         let history = JSON.parse(localStorage.getItem('search_history') || '[]');
-        
+
         // 重複しない場合のみ追加
         if (!history.includes(term)) {
             history.push(term);
             localStorage.setItem('search_history', JSON.stringify(history));
         }
     }
-}); 
+});

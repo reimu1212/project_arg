@@ -47,24 +47,120 @@
             <p>NeuroData Inc.は、感情認識と脳波分析に特化したAIソリューションを提供するリーディングカンパニーです。私たちは「感情理解AI IRIS」を中核に、人とAIの共生を目指しています。</p>
         </section>
 
-        <section id="business" class="business">
-            <h2>主な事業</h2>
-            <ul>
-                <li>感情認識AI「IRIS」の研究開発</li>
-                <li>脳波デバイスと連携したメンタルヘルスソリューション</li>
-                <li>人材マッチング・感情適性評価ツール</li>
-                <li>大学・医療機関との共同研究</li>
-            </ul>
-        </section>
-
         <section id="news" class="news">
             <h2>お知らせ・ニュース</h2>
             <ul>
-                <li><strong>【2025.03.01】</strong> 感情AI「IRIS」研究プロジェクト、第2フェーズへ</li>
-                <li><strong>【2025.02.15】</strong> サービス「NeuroSync」終了のお知らせ</li>
-                <li><strong>【2025.01.12】</strong> インド支社設立のお知らせ</li>
+                <li class="news-link monthly-link" style="cursor:pointer;">
+                    <strong>【2025.04.01】</strong> Neuro月報 2025年4月号
+                </li>
+                <li class="news-link newcomer-link" style="cursor:pointer;">
+                    <strong>【2025.03.15】</strong> 新入社員紹介（2025年度）
+                </li>
+                <li class="news-link research-link" style="cursor:pointer;">
+                    <strong>【2025.03.12】</strong> 第18回 社内研究発表会 開催のお知らせ
+                </li>
             </ul>
         </section>
+
+        <!-- 新入社員紹介モーダル -->
+        <div id="newcomer-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" id="newcomer-close">&times;</span>
+                <div class="search-result">
+                    <h3>新入社員紹介（NeuroData Inc. - 2025年度） <span class="level">閲覧Lv: 1</span></h3>
+                    <div class="content">
+                        <h4>1. 研究開発部</h4>
+                        <ul>
+                            <li><strong>氏名:</strong> 星乃 輝（ほしの あきら）</li>
+                            <li><strong>所属部署:</strong> 研究開発部</li>
+                            <li><strong>最終学歴:</strong> 明京工科大学院 情報理工学研究科 修了</li>
+                            <li><strong>出身地:</strong> 水鏡市（みかがみし）</li>
+                            <li><strong>趣味・特技:</strong> 天体観測、ボードゲーム（戦略系）、競技プログラミング</li>
+                        </ul>
+                        <p><strong>入社の抱負:</strong><br>
+                            「NeuroData
+                            Inc.の革新的な技術、特に感情認識AI『IRIS』に強く惹かれ、入社を志望いたしました。大学院で培った機械学習の知識を活かし、人とAIがより自然に共生できる未来の実現に貢献したいです。日々精進し、一日も早くチームの力になれるよう努めます。」
+                        </p>
+                        <p><strong>自己PR:</strong><br>
+                            「新しい概念を学ぶことや、複雑な問題を解決することに喜びを感じます。論理的な思考と粘り強さが持ち味です。趣味の天体観測では、遠い宇宙に思いを馳せることで発想を豊かにするよう心がけています。」
+                        </p>
+                        <hr>
+                        <h4>2. デザイン部</h4>
+                        <ul>
+                            <li><strong>氏名:</strong> 月島 詩織（つきしま しおり）</li>
+                            <li><strong>所属部署:</strong> デザイン部</li>
+                            <li><strong>最終学歴:</strong> 翠ヶ丘美術大学 デザイン情報学科 卒業</li>
+                            <li><strong>出身地:</strong> 潮音町（しおねちょう）</li>
+                            <li><strong>趣味・特技:</strong> 美術館巡り、写真（フィルムカメラ）、UI/UXデザインに関する情報収集</li>
+                        </ul>
+                        <p><strong>入社の抱負:</strong><br>
+                            「ユーザーの心に寄り添い、直感的で心地よい体験をデザインで提供することを目指しています。学生時代にインターンとして関わらせていただいた『NeuroSync』のUIプロジェクトでは、AIと人とのインタラクションデザインの奥深さを学びました。その経験を活かし、NeuroData
+                            Inc.の製品を通じて、多くの人々に新たな価値を届けられるよう頑張ります。」</p>
+                        <p><strong>自己PR:</strong><br>
+                            「観察眼と共感力を大切にし、使う人の視点に立ったデザインを心がけています。新しいデザイントレンドや技術を学ぶことに積極的で、チームメンバーと協力しながら、より良いものを創り上げていく過程が好きです。」
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 月報モーダル -->
+        <div id="monthly-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" id="monthly-close">&times;</span>
+                <div class="search-result">
+                    <h3>Neuro月報 2025年4月号 <span class="level">閲覧Lv: 1</span></h3>
+                    <div class="content">
+                        <p>🗓 <strong>発行日：</strong>2025年4月1日<br>
+                            🖊 <strong>編集：</strong>広報課</p>
+                        <p><strong>特集：「IRIS、そしてその先へ」</strong></p>
+                        <p>今月号では、社内でも注目を集める感情認識AI「IRIS」の開発フェーズ移行に伴い、開発部長・山村氏へのインタビューをお届けします。</p>
+                        <blockquote>
+                            山村：「IRISは感情という曖昧で主観的な要素を、データとして取り扱うという点で革新的です。ですが、私たちはあくまで"理解"するのであって、"模倣"するのではありません。」
+                        </blockquote>
+                        <p>実際にIRISが導入されているプロジェクトでは、ユーザーの声のトーンや目線といった従来の指標に加え、私たちのコア技術の一つとして研究開発が進む「脳波同期」によって取得される精密な脳波変動など、多角的なデータをもとに、より深いコミュニケーションの可能性が模索されています。この「脳波同期」技術の応用や詳細な研究成果については、現在まとめられている専門報告書にて、さらに詳しく触れられる予定です。
+                        </p>
+                        <p>「感情は、数値では測れない」と言われていた時代から一歩進み、いまやそれを解析しフィードバックする時代へ。今後は医療・福祉・教育などへの応用も検討されており、IRISの進化はまだ始まったばかりです。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 研究発表会モーダル -->
+        <div id="research-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="research-close">&times;</span>
+                <div class="modal-title-row">
+                    <span class="modal-title">
+                        第18回 社内研究発表会（NeuroData Inc. - 2025年度）
+                    </span>
+                    <span class="badge">閲覧Lv：1</span>
+                </div>
+                <div class="modal-date">2025年3月12日</div>
+                <div class="modal-body">
+                    <p>各位</p>
+                    <p>
+                        日頃より当社の研究開発活動にご理解とご協力を賜り、誠にありがとうございます。<br>
+                        この度、NeuroData Inc.の最新の研究成果を共有し、今後の技術革新と事業発展に向けた議論を深めるため、下記の通り第18回社内研究発表会を開催いたします。
+                    </p>
+                    <p>
+                        感情認識AI「IRIS」をはじめとする当社のコア技術の進化と、その多岐にわたる応用可能性について、各部門からの最新報告にご期待ください。<br>
+                        皆様の積極的なご参加を心よりお待ちしております。
+                    </p>
+                    <div class="modal-section">
+                        <h3>開催概要</h3>
+                        <ul class="event-info-list">
+                            <li><strong>日時：</strong>2025年5月15日（木） 10:00 ～ 17:00（受付開始 9:30）</li>
+                            <li><strong>場所：</strong>NeuroData Inc. 本社ビル 3階 オーディトリアム「シナプス」</li>
+                            <li><strong>対象：</strong>NeuroData Inc. 全従業員</li>
+                            <li><strong>参加費：</strong>無料</li>
+                            <li><strong>テーマ：</strong>「感情と知性の調和 ～AIが拓く新たな地平～」</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <section id="voices" class="voices">
             <h2 class="voice-title">🗣️ お客様の声</h2>
@@ -141,6 +237,74 @@
     <!-- 必要なスクリプトを読み込む順番を変更 -->
     <script src="script-part2.js"></script>
     <script src="script.js"></script>
+
+    <!-- 月報モーダルの開閉 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- 月報モーダルの開閉 ---
+            const monthlyLinks = document.querySelectorAll('.monthly-link');
+            const monthlyModal = document.getElementById('monthly-modal');
+            const monthlyClose = document.getElementById('monthly-close');
+
+            if (monthlyLinks && monthlyModal && monthlyClose) {
+                monthlyLinks.forEach(link => {
+                    link.addEventListener('click', function () {
+                        monthlyModal.style.display = 'block';
+                    });
+                });
+                monthlyClose.addEventListener('click', function () {
+                    monthlyModal.style.display = 'none';
+                });
+                window.addEventListener('click', function (event) {
+                    if (event.target === monthlyModal) {
+                        monthlyModal.style.display = 'none';
+                    }
+                });
+            }
+
+            // --- 新入社員紹介モーダルの開閉 ---
+            const newcomerLinks = document.querySelectorAll('.newcomer-link');
+            const newcomerModal = document.getElementById('newcomer-modal');
+            const newcomerClose = document.getElementById('newcomer-close');
+
+            if (newcomerLinks && newcomerModal && newcomerClose) {
+                newcomerLinks.forEach(link => {
+                    link.addEventListener('click', function () {
+                        newcomerModal.style.display = 'block';
+                    });
+                });
+                newcomerClose.addEventListener('click', function () {
+                    newcomerModal.style.display = 'none';
+                });
+                window.addEventListener('click', function (event) {
+                    if (event.target === newcomerModal) {
+                        newcomerModal.style.display = 'none';
+                    }
+                });
+            }
+
+            // --- 研究発表会モーダルの開閉 ---
+            const researchLinks = document.querySelectorAll('.research-link');
+            const researchModal = document.getElementById('research-modal');
+            const researchClose = document.getElementById('research-close');
+
+            if (researchLinks && researchModal && researchClose) {
+                researchLinks.forEach(link => {
+                    link.addEventListener('click', function () {
+                        researchModal.style.display = 'block';
+                    });
+                });
+                researchClose.addEventListener('click', function () {
+                    researchModal.style.display = 'none';
+                });
+                window.addEventListener('click', function (event) {
+                    if (event.target === researchModal) {
+                        researchModal.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
