@@ -244,7 +244,8 @@ h2 {
     overflow-y: auto;
 }
 
-.close-button {
+.close-button,
+.close {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -264,7 +265,8 @@ h2 {
     margin-bottom: 0.5rem;
 }
 
-.search-result .level {
+.search-result .level,
+.badge {
     display: inline-block;
     background-color: #0066cc;
     color: white;
@@ -274,7 +276,8 @@ h2 {
     margin-bottom: 1rem;
 }
 
-.search-result .content {
+.search-result .content,
+.modal-body {
     margin-top: 1rem;
 }
 
@@ -297,6 +300,46 @@ h2 {
     font-style: italic;
     color: #d9534f;
     margin-top: 1.5rem;
+}
+
+/* 研究発表会モーダルスタイル */
+.modal-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.modal-title {
+    color: #0066cc;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.modal-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.modal-section {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.modal-section h3 {
+    color: #0066cc;
+    margin-bottom: 1rem;
+}
+
+.event-info-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.event-info-list li {
+    margin-bottom: 0.5rem;
 }
 
 /* 完了メッセージスタイル */
@@ -595,4 +638,25 @@ footer {
         min-width: 0;
         padding: 1rem 0.5rem;
     }
+}
+
+/* お知らせ・ニュースセクション */
+.news ul {
+    list-style: none;
+}
+
+.news .search-result {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.news .search-result h3 {
+    color: #0066cc;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.news .search-result h3:hover {
+    text-decoration: underline;
 }
